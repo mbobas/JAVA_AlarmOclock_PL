@@ -11,7 +11,6 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -29,25 +28,24 @@ public class Controller implements Initializable {
     private LocalDate data;
     private int glosnosc;
 
+    List<String> markedDays = new ArrayList<String>();
+
     @FXML
     void dodajGodzine(ActionEvent event) {
         godzina = (String) comboBoxGodzina.getValue();
-        System.out.println(godzina);
         }
     @FXML
     void dodajMinute(ActionEvent event) {
         minuta = (String) comboBoxMinuta.getValue();
-        System.out.println(minuta);
     }
     @FXML
     void dodajDate(ActionEvent event) {
         data = dataPicker.getValue();
-        System.out.println(data);
+
     }
     @FXML
     void dodajMelodie(ActionEvent event) {
         melodia = (String) comboBoxMelodia.getValue();
-        System.out.println(melodia);
     }
     @FXML
     void dodajVolume(ActionEvent event) {
@@ -56,7 +54,7 @@ public class Controller implements Initializable {
     }
 
     void dodajDzien2(ActionEvent event) {
-        List<String> markedDays = new ArrayList<String>();
+
         List<RadioButton> days = new ArrayList<RadioButton>();
 
         days.add(PN); days.add(WT);days.add(SR);
@@ -67,10 +65,6 @@ public class Controller implements Initializable {
                 markedDays.add(String.valueOf(d.getText()));
             }
         }
-
-        for (String s : markedDays) {
-            System.out.println(s);
-        }
     }
 
 
@@ -78,9 +72,14 @@ public class Controller implements Initializable {
     protected void saveAndexitClick(ActionEvent event) {
         dodajVolume(event);
         dodajDzien2(event);
-        System.out.println("Ustawiono Alarm! \n Godzina: "+ godzina + ":" +minuta + "\n Data: " + data +
+        System.out.print("Ustawiono Alarm! \n Godzina: "+ godzina + ":" +minuta + "\n Data: " + data +
             "\n Melodia: " + melodia + "\n Głośność: " + glosnosc + "\n Powtarzaj w dni: "
         );
+
+        for (String s : markedDays) {
+            System.out.print(s + " ");
+        }
+
         Platform.exit();
     }
     @FXML
@@ -129,5 +128,4 @@ public class Controller implements Initializable {
         comboBoxMelodia.setItems(oblistaMelodie);
         vol.setShowTickLabels(true);
     }
-
 }
