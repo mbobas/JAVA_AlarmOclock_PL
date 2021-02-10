@@ -1,13 +1,12 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.Spinner;
+import javafx.scene.control.*;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -18,14 +17,17 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-
-
     @FXML private ComboBox comboBoxGodzina;
     @FXML private ComboBox comboBoxMinuta;
     @FXML private DatePicker dataPicker;
+    @FXML private ComboBox comboBoxMelodia;
+    @FXML private Slider vol;
+    @FXML private RadioButton PN, WT, SR, CZ, PT, SO, NI;
 
-    private String godzina, minuta, dni_tygodnia, czyPotwarzaj, glosnosc, melodia;
-    LocalDate data;
+    private String godzina, minuta, melodia;
+
+    private LocalDate data;
+    private int glosnosc;
 
     @FXML
     void dodajGodzine(ActionEvent event) {
@@ -42,20 +44,72 @@ public class Controller implements Initializable {
         data = dataPicker.getValue();
         System.out.println(data);
     }
+    @FXML
+    void dodajMelodie(ActionEvent event) {
+        melodia = (String) comboBoxMelodia.getValue();
+        System.out.println(melodia);
+    }
+    @FXML
+    void dodajVolume(ActionEvent event) {
+        double glos = vol.getValue();
+        glosnosc = (int)glos;
+    }
 
+    void dodajDzien2(ActionEvent event) {
+        List<String> markedDays = new ArrayList<String>();
+        List<RadioButton> days = new ArrayList<RadioButton>();
+
+        days.add(PN); days.add(WT);days.add(SR);
+        days.add(CZ);days.add(PT); days.add(SO);days.add(NI);
+
+        for (RadioButton d : days ) {
+            if (d.isSelected()) {
+                markedDays.add(String.valueOf(d.getText()));
+            }
+        }
+
+        for (String s : markedDays) {
+            System.out.println(s);
+        }
+    }
+
+
+    @FXML
+    protected void saveAndexitClick(ActionEvent event) {
+        dodajVolume(event);
+        dodajDzien2(event);
+        System.out.println("Ustawiono Alarm! \n Godzina: "+ godzina + ":" +minuta + "\n Data: " + data +
+            "\n Melodia: " + melodia + "\n Głośność: " + glosnosc + "\n Powtarzaj w dni: "
+        );
+        Platform.exit();
+    }
+    @FXML
+    protected void exitClick(ActionEvent event) {
+        Platform.exit();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //Godziny
         List<String> list1 = new ArrayList<String>();
-        for (int i=1; i<=24; i++){
+        for (int i=0; i<=9; i++){
+            String s = "0" + i;
+            list1.add(s);
+        }
+        for (int i=10; i<=24; i++){
             list1.add(String.valueOf(i));
         }
         ObservableList obList = FXCollections.observableList(list1);
         comboBoxGodzina.getItems().clear();
         comboBoxGodzina.setItems(obList);
 
+        //Minuty
         List<String> list2 = new ArrayList<String>();
-        for (int i=0; i<=59; i++){
+        for (int i=0; i<=9; i++){
+            String s = "0" + i;
+            list2.add(s);
+        }
+        for (int i=10; i<=59; i++){
             list2.add(String.valueOf(i));
         }
 
@@ -63,14 +117,17 @@ public class Controller implements Initializable {
         comboBoxMinuta.getItems().clear();
         comboBoxMinuta.setItems(obList2);
 
+        //Melodie
+        List<String> listaMelodie = new ArrayList<String>();
+        for (int i=0; i<=9; i++){
+            String s = "Melodia" + i;
+            listaMelodie.add(s);
+        }
 
-
-
-
+        ObservableList oblistaMelodie = FXCollections.observableList(listaMelodie);
+        comboBoxMelodia.getItems().clear();
+        comboBoxMelodia.setItems(oblistaMelodie);
+        vol.setShowTickLabels(true);
     }
-
-
-
-
 
 }

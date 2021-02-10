@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane fx:id="HH" alignment="center" gridLinesVisible="true" hgap="0" vgap="0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane fx:id="HH" alignment="center" hgap="0" prefHeight="481.0" prefWidth="707.0" vgap="0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
-      <RowConstraints minHeight="10.0" prefHeight="30.0" />
+      <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="35.0" />
+      <RowConstraints maxHeight="29.0" minHeight="10.0" prefHeight="25.0" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
@@ -23,17 +23,19 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" />
    </rowConstraints>
    <columnConstraints>
-      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints maxWidth="95.0" minWidth="10.0" prefWidth="83.0" />
+      <ColumnConstraints maxWidth="122.0" minWidth="10.0" prefWidth="72.0" />
+      <ColumnConstraints maxWidth="167.0" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints maxWidth="167.0" minWidth="10.0" prefWidth="100.0" />
+      <ColumnConstraints maxWidth="199.0" minWidth="10.0" prefWidth="109.0" />
+      <ColumnConstraints maxWidth="124.0" minWidth="1.0" prefWidth="44.0" />
+      <ColumnConstraints maxWidth="181.0" minWidth="10.0" prefWidth="131.0" />
    </columnConstraints>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <children>
-      <Label prefHeight="38.0" prefWidth="100.0" text="Budzik" textAlignment="CENTER" GridPane.columnIndex="2">
+      <Label prefHeight="38.0" prefWidth="100.0" text="Budzik" textAlignment="CENTER" GridPane.columnIndex="3">
          <font>
             <Font size="26.0" />
          </font>
@@ -51,6 +53,40 @@
       </Label>
       <ComboBox fx:id="comboBoxGodzina" onAction="#dodajGodzine" prefWidth="150.0" promptText="HH" GridPane.rowIndex="2" />
       <ComboBox fx:id="comboBoxMinuta" onAction="#dodajMinute" prefWidth="150.0" promptText="MM" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <Label text="Minuta" GridPane.columnIndex="1" GridPane.rowIndex="1">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+      <Button fx:id="zapisz" mnemonicParsing="false" onAction="#saveAndexitClick" prefHeight="66.0" prefWidth="131.0" text="Zapisz i Wyjdz" GridPane.columnIndex="6" GridPane.rowIndex="12">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Label prefHeight="17.0" prefWidth="112.0" text="Powtarzanie" GridPane.columnIndex="4" GridPane.rowIndex="1">
+         <font>
+            <Font size="15.0" />
+         </font></Label>
+      <RadioButton fx:id="PN"  mnemonicParsing="false" text="PN" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+      <RadioButton fx:id="CZ"  mnemonicParsing="false" text="CZ" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+      <RadioButton fx:id="PT"  mnemonicParsing="false" text="PT" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+      <RadioButton fx:id="SO"  mnemonicParsing="false" text="SO" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+      <RadioButton fx:id="NI"  mnemonicParsing="false" text="NI" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+      <RadioButton fx:id="WT"  mnemonicParsing="false" text="WT" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+      <RadioButton fx:id="SR"  mnemonicParsing="false" text="SR" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+      <ComboBox fx:id="comboBoxMelodia" onAction="#dodajMelodie" prefWidth="150.0" promptText="MP3" GridPane.rowIndex="5" />
+      <Label text="Melodia" GridPane.rowIndex="4">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Slider fx:id="vol" majorTickUnit="1.0" max="10.0" minorTickCount="1" prefHeight="38.0" prefWidth="143.0" showTickLabels="true" showTickMarks="true" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+      <Label text="VOLUME" GridPane.columnIndex="2" GridPane.rowIndex="6">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="anuluj" contentDisplay="CENTER" mnemonicParsing="false" onAction="#exitClick" prefHeight="25.0" prefWidth="127.0" text="Anuluj" GridPane.columnIndex="6" />
 
    </children>
 </GridPane>
